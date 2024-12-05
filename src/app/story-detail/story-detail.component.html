@@ -1,0 +1,65 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Story</title>
+</head>
+<body>
+    <div class="read-container">
+        <div class="story-section">
+            <ng-container *ngIf="story">
+                <img *ngIf="story.coverImage" [src]="'data:image/jpeg;base64,' + story.coverImage"
+                    alt="{{ story.title }} Cover" class="story-cover-image" />
+                <h1>{{ story.title }}</h1>
+                <p><strong>Genre:</strong> {{ genreText }}</p>
+                <p><strong>Author:</strong> {{ story.created_by?.username }}</p>
+                <div class="content">
+                    {{ story.content }}
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!story">
+                <p>Loading...</p>
+            </ng-container>
+        </div>
+
+        <div class="comments-section">
+            <h2>Comments</h2>
+            <div class="like-section">
+                <button (click)="toggleLike()" [ngClass]="{'liked': isLiked}" class="like-button">
+                    <i class="heart-icon"></i>
+                    {{ likeCount }} Likes
+                </button>
+            </div>
+        
+            <!-- รายการคอมเมนต์ -->
+            <div *ngFor="let comment of comments" class="comment">
+                <p><strong>{{ comment.created_by?.username }}</strong>: {{ comment.content }}</p>
+                <p class="comment-timestamp">
+                    <small>{{ comment.created_at | date: 'medium' }}</small>
+                </p>
+            </div>
+        
+            <!-- ฟอร์มเพิ่มคอมเมนต์ -->
+            <div class="comment-form">
+                <textarea [(ngModel)]="newComment.content" placeholder="Write your comment..." rows="3"></textarea>
+                <button (click)="submitComment()">Post Comment</button>
+            </div>
+
+        </div>
+        
+        <div class="collab-section">
+            <h2>Collaborate</h2>
+            <textarea [(ngModel)]="newCollabContent" placeholder="Write your collaboration here..."></textarea>
+            <button (click)="sendCollab()">Submit Collaboration</button>
+        
+            <div class="collaboration-list">
+                <div *ngFor="let collab of collaborations" >
+                    <strong>{{ collab.username }}</strong>:
+                    <p>{{ collab.content }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

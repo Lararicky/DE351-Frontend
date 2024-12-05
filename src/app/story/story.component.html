@@ -1,0 +1,59 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../../public/css/richtext.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../../public/js/jquery.richtext.min.js"></script>
+</head>
+
+<b>
+    <div class="form-container">
+        <h2>Create New Story</h2>
+        <form [formGroup]="storyForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <div class="input-container">
+                <div class="left-container">
+                    <label for="coverImage">Cover Image:</label>
+                    <input type="file" id="coverImage" (change)="onFileSelect($event)">
+                    <div class="image-preview-container">
+                        <img [src]="imagePreview" *ngIf="imagePreview" alt="Cover Image Preview">
+                    </div>
+                </div>
+
+                <div class="right-container">
+                    <label for="title">Story Title:</label>
+                    <input type="text" formControlName="title" required>
+
+                    <label for="genre">Genre:</label>
+                    <select formControlName="genre" required multiple title="Select story genre">
+                        <option *ngFor="let tag of tags" [value]="tag.tag_name">{{ tag.tag_name }}</option>
+                    </select>
+
+                    <label for="status">Status:</label>
+                    <select formControlName="status" required title="Select story status">
+                        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="content">Story Content:</label>
+            <textarea formControlName="content" id="content" contenteditable="true" class="editable-content" rows="10" required></textarea>
+
+            <div class="text-options">
+                <button type="button" (click)="changeFont('Arial')">
+                    <i class="fas fa-font"></i> Arial
+                </button>
+                <button type="button" (click)="changeFont('Times New Roman')">
+                    <i class="fas fa-text-height"></i> Times New Roman
+                </button>
+                <button type="button" (click)="toggleBold()">
+                    <i class="fas fa-bold"></i> Bold
+                </button>
+                <button type="button" (click)="toggleItalic()">
+                    <i class="fas fa-italic"></i> Italic
+                </button>
+            </div>
+
+            <button type="submit" class="create-btn">Create Story</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+        </form>
+    </div>
+</b>

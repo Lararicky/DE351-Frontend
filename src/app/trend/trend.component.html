@@ -1,0 +1,45 @@
+<head>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <h1 class="section-title">Trending Stories</h1>
+
+        <!-- Categories -->
+        <div class="categories">
+            <button class="category-btn"
+                (click)="filterByGenre('All')">All</button>
+            <button class="category-btn" *ngFor="let genre of genres"
+                (click)="filterByGenre(genre)">
+                {{ genre }}
+            </button>
+        </div>
+
+        <!-- Story Cards -->
+        <div class="story-cards">
+            <div *ngFor="let story of filteredStories" class="story-card">
+                <div class="story-image"
+                    [ngStyle]="{ 'background-image': 'url(' + story.coverImage + ')' }"></div>
+
+                <div class="story-info">
+                    <h2 class="story-title">{{ story.title }}</h2>
+                    <p class="story-creator">by {{ story.created_by.username }}</p>
+
+                    <!-- Story Stats -->
+                    <div class="story-stats">
+                        <span class="likes"><i class="fa-thumbs-up fas"></i> {{ story.likeCount }} Likes</span>
+                        <span class="comments"><i class="fa-comments fas"></i> {{ story.commentCount }} Comments</span>
+                    </div>
+
+                    <!-- Story Actions -->
+                    <div class="story-actions">
+                        <button class="btn read-collab-btn" (click)="readStory(story._id)">Read - Collab</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/models/trending.js"></script>
+</body>

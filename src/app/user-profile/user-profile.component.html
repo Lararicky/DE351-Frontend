@@ -1,0 +1,94 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<b>
+    <div class="main-container">
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li class="active"><i class="fa-cog fas"></i> Account Settings</li>
+                <li>
+                    <button class="link" (click)="goToHome()">
+                        <i class="fa-home fas"></i> Home
+                    </button>
+                </li>
+                <li>
+                    <button class="link" (click)="logout()">
+                        <i class="fa-sign-out-alt fas"></i> Sign Out
+                    </button>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Profile Container -->
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-picture">
+                    <img *ngIf="userProfile?.coverImage" [src]="userProfile?.coverImage" alt="User Image" class="profile-img">
+                    <div class="upload-picture">
+                        <input type="file" (change)="onFileSelected($event)" id="fileInput" style="display:none" />
+                        <label for="fileInput">
+                            <i class="fa-camera-retro fas" style="font-size: 30px; cursor: pointer;"></i>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="profile-details">
+                    <h1 class="username">{{ userProfile?.username }}</h1>
+                    <p class="user-bio">{{ userProfile?.user_bio }}</p>
+                </div>
+            </div>
+
+            <!-- ข้อมูลผู้ใช้ -->
+            <div class="profile-content">
+                <div *ngIf="!isEditing">
+                    <div class="info-section">
+                        <h2>Profile</h2>
+                        <div class="info-item"><i class="fa-envelope fas"></i><strong>Email:</strong> {{
+                            userProfile?.email }}</div>
+                        <div class="info-item"><i class="fa-birthday-cake fas"></i><strong>Date of birth:</strong>
+                            {{userProfile?.dob | date }}</div>
+                        <div class="info-item"><i class="fa-venus-mars fas"></i><strong>Gender:</strong> {{
+                            userProfile?.gender }}</div>
+                        <div class="info-item"><i class="fa-phone fas"></i><strong>Tel:</strong> {{ userProfile?.tel }}
+                        </div>
+                        <div class="info-item"><i class="fa-map-marker-alt fas"></i><strong>Address:</strong>
+                            {{userProfile?.address }}</div>
+                    </div>
+                    <button class="edit-btn" (click)="toggleEdit()">Edit</button>
+                </div>
+
+                <form *ngIf="isEditing" (ngSubmit)="saveProfile()">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" [(ngModel)]="userProfile.username" name="username" required>
+
+                    <label for="user_bio">User Bio:</label>
+                    <input type="text" id="user_bio" [(ngModel)]="userProfile.user_bio" name="user_bio">
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" [(ngModel)]="userProfile.dob" name="dob" required>
+
+                    <label for="gender">Gender:</label>
+                    <select id="gender" [(ngModel)]="userProfile.gender" name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="tel">Tel:</label>
+                    <input type="text" id="tel" [(ngModel)]="userProfile.tel" name="tel" required>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" [(ngModel)]="userProfile.address" name="address" required>
+
+                    <div class="button-container">
+                        <button class="save-btn" type="submit" (click)="saveProfile()">Save</button>
+                        <button class="cancel-btn" type="button" (click)="toggleEdit()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</b>

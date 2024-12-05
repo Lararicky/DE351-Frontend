@@ -1,0 +1,355 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('../pic/h5.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  background-size: 100% 100%;
+  height: auto;
+  padding-top: 60px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.read-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* อนุญาตให้มีการขึ้นบรรทัดใหม่ */
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 1200px;
+  padding-top: 60px;
+  animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.story-section {
+  flex: 2; /* กำหนดให้ story-section ใช้พื้นที่มากกว่า */
+  width: 100%;
+  background: linear-gradient(135deg, #fffdff, #ebd0df);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.story-section:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #e4d236, #f8f7f6);
+}
+
+.comments-section {
+  flex: 1; /* กำหนดให้ comments-section ใช้พื้นที่น้อยกว่า */
+  width: 100%;
+  background: linear-gradient(135deg, #4a90e2, #ffcccb);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.3);
+  max-height: 500px;
+  overflow-y: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.comments-section:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #4a90e2, #80d0ff);
+}
+
+.story-cover-image {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.story-cover-image:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #0a0a0a;
+  margin-bottom: 25px;
+  text-align: center;
+  background: linear-gradient(135deg, #1f0ad4, #f1c40f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+    0px 0px 15px rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+  font-family: 'Arial', sans-serif;
+  animation: fadeInText 2s ease-out;
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+p {
+  font-size: 22px;
+  color: #555;
+  line-height: 1.8;
+  text-align: center;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comments-section h2 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #0a0a0a;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeInText 1.5s ease-out;
+}
+
+.comment {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.comment:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #f1f1f1;
+}
+
+.comment p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.comment-timestamp {
+  margin-top: 5px;
+  color: gray;
+  font-size: 0.9em;
+  text-align: right;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+  margin-top: 12px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment-form textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(72, 137, 230, 0.6);
+}
+
+.comment-form button {
+  display: block;
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #e24ab4, #e6dfe2);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.comment-form button:hover {
+  background: linear-gradient(135deg, #4a6de2, #e7d5dd);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(72, 137, 230, 0.6);
+}
+
+.like-section {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #f0f0f0;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  filter: blur(0);
+}
+
+.like-button::before {
+  content: '❤️';
+  font-size: 24px;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.like-button.liked {
+  background-color: #ffebee;
+  color: red;
+  transform: scale(1.1);
+}
+
+.like-button.liked::before {
+  content: '❤️';
+  color: red;
+  transform: scale(1.3);
+  animation: pulse 1s infinite;
+}
+
+.like-button:hover {
+  background-color: #ffcccb;
+  transform: scale(1.05);
+  filter: blur(1px);
+}
+
+.like-button:active {
+  transform: scale(0.98);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+.collab-section {
+  width: 100%;
+  background: linear-gradient(135deg, #fffbcc, #ffe0a8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  animation: slideIn 1s ease-out;
+}
+
+.collab-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.collab-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: none;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.collab-section textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+.collab-section button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ff8a00, #eecf00);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.collab-section button:hover {
+  background: linear-gradient(135deg, #ffc700, #ff9800);
+  transform: scale(1.05);
+}
+
+.collaboration-list {
+  margin-top: 15px;
+}
+
+.collaboration-item {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.collaboration-item strong {
+  color: #333;
+}
+
+.collaboration-item p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+
+  .story-section {
+    width: 70%; /* ใช้ 70% ของพื้นที่ */
+  }
+
+  .comments-section {
+    width: 30%; /* ใช้ 30% ของพื้นที่ */
+  }
+}
